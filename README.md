@@ -1,4 +1,3 @@
-
 # Bayes' Theorem - Lab
 
 ## Introduction
@@ -18,6 +17,7 @@ To start, write a function, `bayes()`, which takes in the probability of A, the 
 ```python
 def bayes(P_a, P_b, P_b_given_a):
     # Your code here
+    P_a_given_b = (P_b_given_a * P_a) / P_b
     return P_a_given_b
 ```
 
@@ -30,9 +30,20 @@ After a physical exam, a doctor observes a blemish on a client's arm. The doctor
 
 ```python
 # Your code here
+P_blemish_given_skin_cancer = 1
+P_blemish_not_skin_cancer = .2
+P_skin_cancer = 0.15
+P_not_skin_cancer  =  0.85
+#P_cancer_given_blemish = ? , cancer = a, blemish = b  P(A|B)
+P_blemish = (P_blemish_given_skin_cancer * P_skin_cancer) + (P_blemish_not_skin_cancer *  P_not_skin_cancer)
+bayes(P_skin_cancer, P_blemish,  P_blemish_given_skin_cancer)
 ```
 
+
+
+
     0.46875
+
 
 
 ## Children (I) 
@@ -41,7 +52,11 @@ A couple has two children, the older of which is a boy. What is the probability 
 
 
 ```python
-# Your solution P(2boys|older child is a boy)
+# Your solution P(2boys|older child is a boy) - A=2boys, B=older boy 
+P_ob_given_2b = 1
+P_ob = 0.5
+P_2b = P_ob *  P_ob
+bayes(P_2b, P_ob, P_ob_given_2b)
 ```
 
 
@@ -57,7 +72,11 @@ A couple has two children, one of which is a boy. What is the probability that t
 
 
 ```python
-# Your solution P(2boys|1 of 2 children is a boy)
+# Your solution P(2boys|1 of 2 children is a boy),  A =2boys, B=1of2
+P_2b
+P_1of2 = 3/4 #G|B + B|B + B|G (G|G )  
+P_1of2_given_2b = 1
+bayes(P_2b, P_1of2, P_1of2_given_2b)
 ```
 
 
@@ -81,7 +100,13 @@ If a patient tests positive, what is the probability that they actually have the
 
 
 ```python
-# Your solution P(Disease | positive test)
+# Your solution P(Disease | positive test) A=disease, B=pos
+P_pos_given_disease  = 0.99 #(P(B|A))
+P_pos_not_given_disease =  0.01  
+P_disease = 0.01 #P(A)
+P_not_disease = 0.99 
+P_pos = P_pos_given_disease * P_disease + P_pos_not_given_disease * P_not_disease #P(B)
+bayes(P_disease, P_pos, P_pos_given_disease)
 ```
 
 
